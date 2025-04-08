@@ -1,34 +1,29 @@
+// Declaração das variáveis que serão usadas futuramente
 let listaDeNumerosSorteados = [];
-let numeroLimite = 100;
+let numeroLimite = 10;
 let numeroSecreto = gerarNumeroAleatorio();
 let qtTentativas = 1;
 
+// Função usada para exibir o texto no display
 function exibirTextoNaTela(tag, texto) {
-    let campo = document.querySelector(tag);
-    campo.innerHTML = texto;
-
-    if ('speechSysthesis' in window) {
-        let utterance = new SpeechSynthesisUtterance(texto);
-        utterance.lang = 'pt-BR';
-        utterance.rate = 1.2;
-        window.speechSynthesis.speak(utterance);
-    } else {
-        console.log('Web speech API não suportada no navegador');
-    }
-
+    let campo = document.querySelector(tag);    // Obtem a tag passada por parâmetro
+    campo.innerHTML = texto;    // Adiciona o texto na tag obtida
 }
 
-
+// Função usada para exibir o texto inicial no display
 function exibirMensagemInicial() {
     exibirTextoNaTela('h1', 'Jogo do número secreto');
-    exibirTextoNaTela('p', 'Escolha um número entre 1 e 100');
+    exibirTextoNaTela('p', `Escolha um número entre 1 e ${numeroLimite}`);
 }
 
+// Chama a função para exibir o texto inicial
 exibirMensagemInicial();
 
+// Função usada para verificar o valor escolhido pelo usuário
 function verificarChute() {
-    let chute = document.querySelector('input').value;
+    let chute = document.querySelector('input').value;  // Obtém o dado do campo input
     
+    // Verifica se o chute é igual ao número secreto
     if (chute == numeroSecreto) {
         exibirTextoNaTela('h1', 'Acertou!');
         let palavraTentativa = qtTentativas > 1 ? 'tentativas' : 'tentativa';
@@ -46,6 +41,7 @@ function verificarChute() {
     }
 }
 
+// Função usada para gerar números aleatórios e armazenar em uma lista
 function gerarNumeroAleatorio() {
     let numeroEscolhido = parseInt(Math.random() * numeroLimite + 1);
     let quantidadeDeElementosNaLista = listaDeNumerosSorteados.length;
@@ -57,16 +53,17 @@ function gerarNumeroAleatorio() {
         return gerarNumeroAleatorio();
     } else {
         listaDeNumerosSorteados.push(numeroEscolhido);
-        console.log(listaDeNumerosSorteados);
         return numeroEscolhido;
     }
 }
 
+// Função usada para limpar o campo de entrada
 function limparCampo() {
     chute = document.querySelector('input');
     chute.value = '';
 }
 
+// Função usada para reiniciar o jogo
 function reiniciarJogo() {
     numeroSecreto = gerarNumeroAleatorio();
     limparCampo();
@@ -74,10 +71,3 @@ function reiniciarJogo() {
     exibirMensagemInicial();
     document.getElementById('reiniciar').setAttribute('disabled', true);
 }
-
-
-
-
-
-
-

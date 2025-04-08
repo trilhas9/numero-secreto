@@ -1,3 +1,7 @@
+:root {
+    --main-color: #1875E8;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,13 +10,12 @@
 }
 
 body {
+    display: flex;
     background: linear-gradient(#1354A5 0%, #041832 33.33%, #041832 66.67%, #01080E 100%);
     height: 100vh;
-    display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
-
 
 body::before {
     background-image: url("img/code.png");
@@ -27,19 +30,18 @@ body::before {
 }
 
 .container {
+    display: flex;
     width: 80%;
     height: 80%;
-    display: flex;
     align-items: center;
     justify-content: space-between;
+    border: 1px solid var(--main-color);
     border-radius: 24px;
-    border: 1px solid #1875E8;
-    box-shadow: 4px 4px 20px 0px rgba(1, 8, 14, 0.15);
+    box-shadow: 0px 0px 10px 0px rgba(1, 255, 255, 0.8);
     background-image: url("img/Ruido.png");
     background-size: 100% 100%;
     position: relative;
 }
-
 
 .container__conteudo {
     display: flex;
@@ -55,21 +57,14 @@ body::before {
 
 .container__botao {
     border-radius: 16px;
-    background: #1875E8;
+    background: var(--main-color);
     padding: 16px 24px;
     width: 100%;
     font-size: 24px;
     font-weight: 700;
     border: none;
     margin-top: 2rem;
-}
-
-.container__texto {
-    margin: 16px 0 16px 0;
-}
-
-.container__texto-azul {
-    color: #1875E8;
+    cursor: pointer;
 }
 
 .container__input {
@@ -78,7 +73,7 @@ body::before {
     border-radius: 16px;
     background-color: #FFF;
     border: none;
-    color: #1875E8;
+    color: var(--main-color);
     padding: 2rem;
     font-size: 24px;
     font-weight: 700;
@@ -96,8 +91,7 @@ h1 {
     padding-bottom: 3rem;
 }
 
-p,
-button {
+p, button {
     font-family: 'Inter', sans-serif;
 }
 
@@ -111,7 +105,6 @@ button:disabled {
 }
 
 @media screen and (max-width: 1250px) {
-
     h1 {
         font-size: 50px;
     }
@@ -119,7 +112,6 @@ button:disabled {
     .container__botao {
         font-size: 16px;
     }
-
 
     .texto__paragrafo {
         font-size: 24px;
@@ -130,11 +122,22 @@ button:disabled {
     }
 
     .container__conteudo {
-        display: block;
+        width: 100%;
         position: inherit;
     }
 
+    .container__texto {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    h1, p {
+        text-align: center;
+        padding-bottom: 1rem;
+    }
+
     .container__informacoes {
-        padding: 1rem
+        padding: 1rem;
     }
 }
